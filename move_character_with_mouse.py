@@ -53,8 +53,12 @@ while running:
         j = (1-t)* y1 + t * y2
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+        if(x - i >0):
+            move = 1
+        elif(x-i<0):
+            move = 0
         hand.clip_draw(0, 0, 50, 52, x, y)
-        character.clip_draw(frame * 100, 100 * 1, 100, 100, i, j)
+        character.clip_draw(frame * 100, 100 * move, 100, 100, i, j)
         update_canvas()
         handle_events()
         frame = (frame + 1) % 8
