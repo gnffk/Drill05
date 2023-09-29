@@ -1,5 +1,5 @@
 from pico2d import *
-
+import random
 TUK_WIDTH, TUK_HEIGHT = 1280, 1024
 open_canvas(TUK_WIDTH, TUK_HEIGHT)
 
@@ -25,6 +25,7 @@ def handle_events():
 running = True
 x, y = TUK_WIDTH // 2, TUK_HEIGHT // 2
 i, j = TUK_WIDTH // 2, TUK_HEIGHT // 2
+x,y = random.randint(0, TUK_WIDTH),random.randint(0, TUK_HEIGHT)
 frame = 0
 hide_cursor()
 
@@ -32,6 +33,8 @@ while running:
     clear_canvas()
     TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     hand.clip_draw(0, 0, 50, 52, x, y)
+    if(x == i and y == j):
+        x,y = random.randint(0, TUK_WIDTH),random.randint(0, TUK_HEIGHT)
     character.clip_draw(frame * 100, 100 * 1, 100, 100, i, j)
     update_canvas()
     frame = (frame + 1) % 8
