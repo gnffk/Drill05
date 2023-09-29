@@ -40,21 +40,25 @@ def move():
         hand.clip_draw(0, 0, 50, 52, x, y)
         character.clip_draw(frame * 100, 100 * 1, 100, 100, i, j)
         update_canvas()
+        handle_events()
         delay(0.1)
 
 while running:
-    clear_canvas()
-    TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
-    hand.clip_draw(0, 0, 50, 52, x, y)
     if(x == i and y == j):
         x,y = random.randint(0, TUK_WIDTH),random.randint(0, TUK_HEIGHT)
         x1, y1, x2, y2 = i, j, x, y
-
-    move()
-    update_canvas()
-    frame = (frame + 1) % 8
-
-    handle_events()
+    for k in range(0, 100+1, 1):
+        t = k /100
+        i = (1-t)* x1 + t * x2
+        j = (1-t)* y1 + t * y2
+        clear_canvas()
+        TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+        hand.clip_draw(0, 0, 50, 52, x, y)
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, i, j)
+        update_canvas()
+        handle_events()
+        frame = (frame + 1) % 8
+        handle_events()
 
 close_canvas()
 
